@@ -3,10 +3,15 @@ const config = require('../knexfile.js');
 const db = knex(config.development);
 
 module.exports = {
-  addProjects,
-  addActions,
+  get,
   getByID,
-  getProjectByID
+  getProjectByID,
+  addProjects,
+  addActions
+}
+
+function get() {
+  return db('projects');
 }
 
 function getByID(id) {
