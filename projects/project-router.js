@@ -4,6 +4,15 @@ const Projects = require('./project-model.js');
 
 const router = express.Router();
 
+router.get('/', async (req, res) => {
+  try {
+    const projects = await Projects.get();
+    res.json(projects);
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get projects' })
+  }
+})
+
 router.post('/', async (req, res) => {
   const projectData = req.body;
 
