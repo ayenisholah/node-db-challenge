@@ -4,7 +4,7 @@ const db = knex(config.development);
 
 module.exports = {
   get,
-  getByID,
+  getProjectActionsByID,
   getProjectByID,
   addProjects,
   addActions
@@ -14,10 +14,16 @@ function get() {
   return db('projects');
 }
 
-function getByID(id) {
+function getProjectByID(id) {
   return db('projects')
   .where({ id })
   .first();
+}
+function getProjectActionsByID(id) {
+  return db('projects as p')
+    .join('actions as a', 'projects.id', 'actions.project_id')
+    .select('p.project_name', 'p.description', 'p.completed', 'a.action_name', 'a.notes', 'a.completed')
+    .where({ id })
 }
 
 function addActions(action) {
@@ -32,9 +38,3 @@ function addProjects(project) {
     .then(ids => ({ id: id[0] }));
 }
 
-function getProjectByID(id) {
-  return db('projects')
-    .join('actions', 'projects.id', 'actions.project_id')
-    .select('*')
-    .where({ id })
-}
