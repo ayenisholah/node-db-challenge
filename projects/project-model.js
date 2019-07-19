@@ -5,7 +5,14 @@ const db = knex(config.development);
 module.exports = {
   addProjects,
   addActions,
+  getByID,
   getProjectByID
+}
+
+function getByID(id) {
+  return db('projects')
+  .where({ id })
+  .first();
 }
 
 function addActions(action) {
