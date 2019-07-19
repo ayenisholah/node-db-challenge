@@ -4,7 +4,7 @@
   "description": "This challenge allows you to practice the concepts and techniques learned over the past Sprint and apply them in a concrete project.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/ayenisholah/node-db-challenge#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-router": "0.0.1",
     "expressjs-router": "^2.0.1",
     "knex": "^0.19.0",
     "knex-cleaner": "^1.2.1",
