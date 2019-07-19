@@ -19,3 +19,10 @@ function addProjects(project) {
     .insert(project)
     .then(ids => ({ id: id[0] }));
 }
+
+function getProjectByID(projectID) {
+  return db('projects as P')
+    .join('actions')
+    .select('P.id', 'P.project_name', 'P.description', 'P.completed', 'actions')
+    .where({ id: projectID });
+}
