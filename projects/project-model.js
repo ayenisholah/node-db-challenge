@@ -32,9 +32,9 @@ function addProjects(project) {
     .then(ids => ({ id: id[0] }));
 }
 
-function getProjectByID(projectID) {
-  return db('projects as P')
-    .join('actions')
-    .select('P.id', 'P.project_name', 'P.description', 'P.completed', 'actions')
-    .where({ id: projectID });
+function getProjectByID(id) {
+  return db('projects')
+    .join('actions', 'projects.id', 'actions.project_id')
+    .select('*')
+    .where({ id })
 }

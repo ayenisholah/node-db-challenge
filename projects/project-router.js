@@ -11,6 +11,22 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json({ message: 'Failed to get projects' })
   }
+});
+
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const project = await Projects.getProjectByID(id);
+
+    if (project) {
+      res.json(project);
+    } else {
+      res.status(404).json({ message: 'Could not find project with given id' })
+    }
+  } catch (err) {
+    res.status(500).json({ message: 'Failed to get projects' })
+  }
 })
 
 router.post('/', async (req, res) => {
