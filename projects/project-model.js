@@ -13,3 +13,9 @@ function addActions(action) {
     .insert(action)
     .then(ids => ({ id: id[0] }));
 }
+
+function addProjects(project) {
+  return db('projects')
+    .insert(project)
+    .then(ids => ({ id: id[0] }));
+}
